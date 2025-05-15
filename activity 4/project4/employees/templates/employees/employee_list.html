@@ -1,0 +1,55 @@
+{% extends 'employees/base.html' %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2>Employee List</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{% url 'employee_create' %}" class="btn btn-primary">Add New Employee</a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col">
+        <form method="get" class="d-flex">
+            <input type="text" name="search" class="form-control me-2" placeholder="Search employees..." value="{{ request.GET.search }}">
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+        </form>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th>Age</th>
+                <th>Hire Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.position }}</td>
+                <td>${{ employee.salary }}</td>
+                <td>{{ employee.age }}</td>
+                <td>{{ employee.hire_date }}</td>
+                <td>
+                    <a href="{% url 'employee_update' employee.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{% url 'employee_delete' employee.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No employees found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 
