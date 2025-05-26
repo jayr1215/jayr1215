@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %} <!-- Add this line -->
+    <meta charset="UTF-8">
+    <title>Django app</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div>
+        {% if user.is_authenticated %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

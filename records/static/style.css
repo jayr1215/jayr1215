@@ -1,0 +1,401 @@
+/* Global Styles */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.4); }
+    100% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.2); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes borderGlow {
+    0% { border-color: rgba(0, 255, 255, 0.3); }
+    50% { border-color: rgba(0, 255, 255, 0.8); }
+    100% { border-color: rgba(0, 255, 255, 0.3); }
+}
+
+body {
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    background: linear-gradient(-45deg, #1a1a1a, #2d2d2d, #1a1a1a, #2d2d2d);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    margin: 0;
+    padding: 0;
+    color: #e0e0e0;
+    line-height: 2.0;
+}
+
+/* Container */
+.container {
+    width: 85%;
+    max-width: 2000px;
+    margin: 30px auto;
+    background: rgba(45, 45, 45, 0.9);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    animation: glowPulse 3s infinite;
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.2);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #00ffff;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+h1:hover, h2:hover, h3:hover {
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    transform: scale(1.02);
+}
+
+/* Form Elements */
+form label {
+    display: block;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    color: #00ffff;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="number"],
+form input[type="date"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: rgba(26, 26, 26, 0.8);
+    color: #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 255, 255, 0.1);
+    animation: borderGlow 3s infinite;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #00ffff;
+    outline: 0;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background: linear-gradient(45deg, #2d2d2d, #3d3d3d);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #0066cc, #0088ff);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #0052a3, #0066cc);
+}
+
+.btn-warning {
+    color: #212529;
+    background-color: #ffd700;
+    border-color: #ffd700;
+}
+
+.btn-warning:hover {
+    background-color: #ffc800;
+    border-color: #ffc800;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #ff3333;
+    border-color: #ff3333;
+}
+
+.btn-danger:hover {
+    background-color: #cc0000;
+    border-color: #cc0000;
+}
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    background-color: rgba(45, 45, 45, 0.9);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    text-align: left;
+    vertical-align: top;
+    transition: all 0.3s ease;
+}
+
+.table thead th {
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+    color: #00ffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(0, 255, 255, 0.1);
+    transform: scale(1.01);
+}
+
+/* Actions in table */
+.table .actions a {
+    margin-right: 8px;
+    font-weight: 500;
+}
+
+.table .actions a:last-child {
+    margin-right: 0;
+}
+
+/* Alert/Message Styling */
+.alert {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    animation: glowPulse 3s infinite;
+    backdrop-filter: blur(5px);
+}
+
+.alert-success {
+    background: rgba(0, 255, 0, 0.1);
+    border-color: #00ff00;
+    color: #00ff00;
+}
+
+.alert-danger {
+    background: rgba(255, 51, 51, 0.1);
+    border-color: #ff3333;
+    color: #ff3333;
+}
+
+.alert-info {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: #00ffff;
+    color: #00ffff;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center !important;
+}
+
+/* Box */
+.box {
+    width: 85%;
+    max-width: 500px;
+    margin: 200px auto;
+    background: rgba(45, 45, 45, 0.9);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(26, 26, 26, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.navbar .d-flex {
+    margin-left: auto;
+}
+
+.bot {
+    margin-left: 90rem;
+}
+
+.d-flex .ms-auto {
+    margin-left: 90rem;
+    margin-top: -3rem;
+}
+
+.btn-logout {
+    background: linear-gradient(45deg, #ff3333, #cc0000);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-logout::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.btn-logout:hover::before {
+    left: 100%;
+}
+
+.btn-logout:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 51, 51, 0.3);
+}
+
+/* Links */
+a {
+    color: #00ffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #00ffff;
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+a:hover {
+    color: #00cccc;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .box {
+        width: 95%;
+        margin: 100px auto;
+    }
+
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.3rem; }
+
+    form input[type="text"],
+    form input[type="password"],
+    form input[type="email"],
+    form input[type="number"],
+    form input[type="date"],
+    form textarea,
+    form select,
+    form button[type="submit"] {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+}
