@@ -1,0 +1,45 @@
+{% extends 'appointments/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Appointment Confirmation</div>
+                <div class="card-body text-center">
+                    <h1 class="card-title text-success">Appointment Confirmed!</h1>
+                    <p class="card-text">Your appointment has been successfully scheduled.</p>
+                    <p class="card-text">Thank you for choosing our services.</p>
+                    <a href="{% url 'home' %}" class="btn btn-primary">Go to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Appointment Confirmation</div>
+                <div class="card-body">
+                    <h2 class="card-title text-success">Appointment Successfully Booked!</h2>
+                    <p>Your appointment details are as follows:</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Patient Name:</strong> {{ appointment.patient.first_name }} {{ appointment.patient.last_name }}</li>
+                        <li class="list-group-item"><strong>Date:</strong> {{ appointment.date }}</li>
+                        <li class="list-group-item"><strong>Time:</strong> {{ appointment.time }}</li>
+                        <li class="list-group-item"><strong>Purpose:</strong> {{ appointment.reason }}</li>
+                        <li class="list-group-item"><strong>Cost:</strong> ₱{{ appointment.cost }}</li>
+
+                    </ul>
+                    <div class="mt-4">
+                        <a href="{% url 'appointment_list' %}" class="btn btn-primary me-2">View All Appointments</a>
+                        <a href="{% url 'home' %}" class="btn btn-secondary">Return to Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
