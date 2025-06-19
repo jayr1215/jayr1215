@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="bg-gray-800 text-white w-64 flex flex-col">
+            <div class="p-4 text-2xl font-bold border-b border-gray-700">Clinic Admin</div>
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="{% url 'home' %}" class="block py-2 px-4 rounded hover:bg-gray-700">Dashboard</a>
+                <a href="{% url 'appointment_list' %}" class="block py-2 px-4 rounded hover:bg-gray-700">Appointments</a>
+                <a href="{% url 'patients' %}" class="block py-2 px-4 rounded hover:bg-gray-700">Patients</a>
+                <a href="{% url 'payments' %}" class="block py-2 px-4 rounded hover:bg-gray-700">Payments</a>
+                <a href="{% url 'logout' %}" class="block py-2 px-4 rounded hover:bg-gray-700">Logout</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <header class="bg-white shadow p-4 flex justify-between items-center">
+                <h1 class="text-2xl font-semibold">Payments List</h1>
+                <div>Welcome, Admin!</div>
+            </header>
+
+            <main class="flex-1 p-6 bg-gray-100">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">All Payments</h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 px-4 border-b text-left text-gray-600">Patient Name</th>
+                                    <th class="py-2 px-4 border-b text-left text-gray-600">Amount</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for payment in payments %}
+                                <tr>
+                                    <td class="py-2 px-4 border-b">{{ payment.patient.first_name }} {{ payment.patient.last_name }}</td>
+                                    <td class="py-2 px-4 border-b">{{ payment.cost|floatformat:2 }}</td>
+
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="py-4 px-4 text-center text-gray-500">No payments found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

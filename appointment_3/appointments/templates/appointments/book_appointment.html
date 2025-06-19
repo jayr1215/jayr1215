@@ -1,0 +1,65 @@
+{% extends 'appointments/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8"> {# Increased column size here #}
+            <div class="card shadow-lg p-4 mb-5 bg-white rounded">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h2 class="mb-0">Book New Appointment</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <div class="form-text">{{ field.help_text }}</div>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">Create Appointment</button>
+                            <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-secondary btn-lg">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const purposeSelect = document.getElementById('id_purpose_of_appointment');
+        const costInput = document.getElementById('id_cost');
+
+        const purposeCosts = {
+            'Prophylaxis': 1500.00,
+            'Dental Fillings': 2000.00,
+            'Removable Dentures': 15000.00,
+            'Tooth Extractions': 1000.00,
+            'Dental Checkups & Diagnosis': 500.00,
+            'Crowns & Bridges': 25000.00,
+            'Orthodontics': 30000.00
+        };
+
+        function updateCost() {
+            const selectedPurpose = purposeSelect.value;
+            const cost = purposeCosts[selectedPurpose] || 0.00; // Default to 0 if not found
+            costInput.value = cost.toFixed(2);
+        }
+
+        // Set initial cost when the page loads
+        updateCost();
+
+        // Update cost when the purpose changes
+        purposeSelect.addEventListener('change', updateCost);
+    });
+</script>
+{% endblock %}
